@@ -1,6 +1,6 @@
 import "./styles/global.scss";
 import { createRoot } from "react-dom/client";
-import Dashboard from "./pages/Dashboard";
+import { Dashboard } from "./pages/Dashboard/Dashboard";
 
 const App = () => {
   return (

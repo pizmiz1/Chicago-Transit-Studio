@@ -1,8 +1,9 @@
-import { useLineAlerts } from "../hooks/useLineAlerts";
-import { useRidership } from "../hooks/useRidership";
-import { useStations } from "../hooks/useStations";
+import { useLineAlerts } from "../../hooks/useLineAlerts";
+import { useRidership } from "../../hooks/useRidership";
+import { useStations } from "../../hooks/useStations";
+import { DataCards } from "./DataCards";
 
-const Dashboard = () => {
+export const Dashboard = () => {
   const ridership = useRidership();
   const stations = useStations();
   const lineAlerts = useLineAlerts();
@@ -12,8 +13,8 @@ const Dashboard = () => {
       <h1 style={{ fontSize: "4rem" }}>{ridership.loadStatus}</h1>
       <h1 style={{ fontSize: "4rem" }}>{String(stations.loading)}</h1>
       <h1 style={{ fontSize: "4rem" }}>{String(lineAlerts.loading)}</h1>
+
+      <DataCards />
     </div>
   );
 };
-
-export default Dashboard;

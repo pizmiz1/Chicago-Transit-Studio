@@ -1,11 +1,20 @@
 // Colors
 $background: #0b111e;
-$card-input: #162032;
+
+$card: #162032;
+$card-hover: #1e293b;
+$card-active: #303b4b;
+
 $sidebar-header: #0f172a;
-$border-hover: #1e293b;
+
+$border: #334155;
+$border-hover: #475569;
+$border-active: #3b82f6;
 
 $primary-text: #f8fafc;
-$secondary-text: #94a3b8;
+$secondary-text: #cbd5e1;
+$muted-text-light: #94a3b8;
+$muted-text-dark: #64748b;
 
 $chart: #38bdf8;
 $chart-gradient: linear-gradient(180deg, rgba(56, 189, 248, 0.25) 0%, rgba(56, 189, 248, 0) 100%);

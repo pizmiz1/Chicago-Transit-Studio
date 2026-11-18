@@ -19,6 +19,7 @@ export const useStations = () => {
 
         const response = await fetch(`${endpoint}?${params}`, {
           signal: controller.signal,
+          cache: "no-cache",
         });
         if (!response.ok) {
           throw new Error("CTA Stations request failed");

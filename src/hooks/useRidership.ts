@@ -14,7 +14,7 @@ const fetchPage = async (offset: number, signal: AbortSignal): Promise<Ridership
     $order: "date DESC, station_id ASC",
   });
 
-  const response = await fetch(`${endpoint}?${params}`, { signal });
+  const response = await fetch(`${endpoint}?${params}`, { signal: signal, cache: "no-cache" });
   if (!response.ok) {
     throw new Error("CTA Ridership request failed");
   }

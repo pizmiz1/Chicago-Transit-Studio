@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5rem;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.headerText {
+  font-size: 2.5rem;
+  color: $secondary-text;
+  line-height: 1.15;
+}
+
+.dataText {
+  font-size: 5rem;
+  color: $primary-text;
+  font-weight: bold;
+  line-height: 1.15;
+}

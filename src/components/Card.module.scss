@@ -1,0 +1,35 @@
+%card-base {
+  background-color: $card;
+  width: fit-content;
+  padding: 2.5rem;
+  border-color: $border;
+  border-radius: 8px;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.btn {
+  @extend %card-base;
+
+  transition:
+    border-color 0.2s ease-out,
+    background-color 0.2s ease-out;
+
+  &:hover {
+    border-color: $border-hover;
+    background-color: $card-hover;
+  }
+
+  &:active {
+    background-color: $card-active;
+  }
+
+  &.selected {
+    border-color: $border-active;
+    background-color: $card-active;
+  }
+}
+
+.container {
+  @extend %card-base;
+}

@@ -20,7 +20,7 @@ export const useLineAlerts = () => {
 
     const load = async () => {
       try {
-        const response = await fetch(endpoint, { signal: controller.signal });
+        const response = await fetch(endpoint, { signal: controller.signal, cache: "no-cache" });
         if (!response.ok) {
           throw new Error("CTA Line Alerts request failed");
         }
