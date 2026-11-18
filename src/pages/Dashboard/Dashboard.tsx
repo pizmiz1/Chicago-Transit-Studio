@@ -1,18 +1,14 @@
-import { useLineAlerts } from "../../hooks/useLineAlerts";
-import { useRidership } from "../../hooks/useRidership";
-import { useStations } from "../../hooks/useStations";
-import { DataCards } from "./DataCards";
+import { useData } from "../../store/DataContext";
+import { DataCards } from "./components/DataCards";
 
 export const Dashboard = () => {
-  const ridership = useRidership();
-  const stations = useStations();
-  const lineAlerts = useLineAlerts();
+  const { ridershipLoadStatus, stationsLoading, lineAlertsLoading } = useData();
 
   return (
     <div>
-      <h1 style={{ fontSize: "4rem" }}>{ridership.loadStatus}</h1>
-      <h1 style={{ fontSize: "4rem" }}>{String(stations.loading)}</h1>
-      <h1 style={{ fontSize: "4rem" }}>{String(lineAlerts.loading)}</h1>
+      <h1 style={{ fontSize: "4rem" }}>{ridershipLoadStatus}</h1>
+      <h1 style={{ fontSize: "4rem" }}>{String(stationsLoading)}</h1>
+      <h1 style={{ fontSize: "4rem" }}>{String(lineAlertsLoading)}</h1>
 
       <DataCards />
     </div>

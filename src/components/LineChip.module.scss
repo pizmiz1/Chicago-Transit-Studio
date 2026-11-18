@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 5rem;
+  padding: 0.5rem 0rem;
+  border-radius: 9999px;
+}
+
+.text {
+  font-size: 2.2rem;
+}
+
+.G {
+  background-color: $cta-green;
+}
+
+.B {
+  background-color: $cta-blue;
+}
+
+.R {
+  background-color: $cta-red;
+}
+
+.Br {
+  background-color: $cta-brown;
+}
+
+.Pu {
+  background-color: $cta-purple;
+}
+
+.P {
+  background-color: $cta-pink;
+}
+
+.O {
+  background-color: $cta-orange;
+}
+
+.Y {
+  background-color: $cta-yellow;
+}

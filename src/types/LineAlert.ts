@@ -1,6 +1,18 @@
+import type { ServiceIds } from "./Lines";
+
 export interface LineAlert {
-  Route: string;
-  ServiceId: string;
-  RouteStatus: string;
-  RouteColorCode: string;
+  AlertId: string;
+  Headline: string;
+  ShortDescription: string;
+  Impact: string;
+  EventStart: string;
+  EventEnd: string | null;
+  ImpactedService?: {
+    Service?: ImpactedLine | ImpactedLine[];
+  };
+}
+
+export interface ImpactedLine {
+  ServiceType: string;
+  ServiceId: ServiceIds;
 }

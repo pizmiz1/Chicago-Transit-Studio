@@ -1,15 +1,5 @@
-%card-base {
-  background-color: $card;
-  width: fit-content;
-  padding: 2.5rem;
-  border-color: $border;
-  border-radius: 8px;
-  border-width: 1px;
-  border-style: solid;
-}
-
 .btn {
-  @extend %card-base;
+  @include card;
 
   transition:
     border-color 0.2s ease-out,
@@ -31,5 +21,5 @@
 }
 
 .container {
-  @extend %card-base;
+  @include card;
 }

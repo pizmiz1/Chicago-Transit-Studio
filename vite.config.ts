@@ -5,17 +5,22 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api/cta/routes": {
+      "/api/cta/alerts": {
         target: "https://lapi.transitchicago.com",
         changeOrigin: true,
-        rewrite: () => "/api/1.0/routes.aspx?outputType=JSON",
+        rewrite: (path) => {
+          const url = new URL(path, "http://localhost");
+          url.pathname = "/api/1.0/alerts.aspx";
+          url.searchParams.set("outputType", "JSON");
+          return `${url.pathname}${url.search}`;
+        },
       },
     },
   },
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use "/src/styles/variables" as *;`,
+        additionalData: `@use "/src/styles/variables" as *; @use "/src/styles/mixins" as *;`,
       },
     },
   },
