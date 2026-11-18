@@ -17,7 +17,7 @@ export const DataCards = () => {
             style={{ flex: 1 }}
             selected={index === selectedCardIndex}
             onClick={() => {
-              setSelectedCardIndex(index);
+              setSelectedCardIndex((prev) => (prev === index ? undefined : index));
             }}
           >
             <div className={styles.cardContainer}>
