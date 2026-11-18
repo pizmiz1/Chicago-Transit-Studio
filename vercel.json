@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/cta/routes",
+      "destination": "https://lapi.transitchicago.com/api/1.0/routes.aspx?outputType=JSON"
+    }
+  ]
+}

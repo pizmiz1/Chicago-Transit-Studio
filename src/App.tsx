@@ -1,16 +1,13 @@
-import { StrictMode } from "react";
+import "./styles/global.scss";
 import { createRoot } from "react-dom/client";
+import Dashboard from "./pages/Dashboard";
 
 const App = () => {
   return (
     <main>
-      <h1>Chicago Transit Studio</h1>
+      <Dashboard />
     </main>
   );
 };
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+createRoot(document.getElementById("root")!).render(<App />);
