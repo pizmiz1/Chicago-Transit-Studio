@@ -8,7 +8,7 @@ export interface LineAlert {
   EventStart: string;
   EventEnd: string | null;
   ImpactedService?: {
-    Service?: ImpactedLine | ImpactedLine[];
+    Service?: ImpactedLine[];
   };
 }
 

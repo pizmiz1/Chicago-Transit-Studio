@@ -122,7 +122,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     const load = async () => {
       try {
         const params = new URLSearchParams({
-          $select: "map_id,red,blue,g,brn,p,y,pnk,o",
+          $select: "map_id,station_name,red,blue,g,brn,p,y,pnk,o",
         });
 
         const response = await fetch(`${stationsEndpoint}?${params}`, {

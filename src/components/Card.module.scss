@@ -1,22 +1,32 @@
 .btn {
   @include card;
+  outline: 1px solid transparent;
 
   transition:
     border-color 0.2s ease-out,
-    background-color 0.2s ease-out;
+    background-color 0.2s ease-out,
+    outline-color 0.2s ease-out,
+    opacity 0.2s ease-out;
 
-  &:hover {
+  &:not(:disabled):hover {
     border-color: $border-hover;
     background-color: $card-hover;
   }
 
-  &:active {
+  &:not(:disabled):active {
     background-color: $card-active;
   }
 
   &.selected {
+    outline: 1px solid $border-active;
+    outline-offset: 0;
     border-color: $border-active;
     background-color: $card-active;
+  }
+
+  &.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
   }
 }
 
