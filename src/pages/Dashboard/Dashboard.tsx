@@ -1,20 +1,18 @@
+import styles from "./Dashboard.module.scss";
 import { useState } from "react";
-import { useData } from "../../store/DataContext";
-import { DataCards } from "./components/DataCards";
+import { DataCards } from "./DataCards/DataCards";
 import type { Line } from "../../types/Lines";
 import type { Station } from "../../types/Station";
+import { Header } from "./Header/Header";
 
 export const Dashboard = () => {
-  const { ridershipLoadStatus, stationsLoading, lineAlertsLoading } = useData();
-
   const [selectedStation, setSelectedStation] = useState<Station | undefined>();
   const [selectedLines, setSelectedLines] = useState<Line[] | undefined>();
+  const [search, setSearch] = useState("");
 
   return (
-    <div>
-      <h1 style={{ fontSize: "4rem" }}>{ridershipLoadStatus}</h1>
-      <h1 style={{ fontSize: "4rem" }}>{String(stationsLoading)}</h1>
-      <h1 style={{ fontSize: "4rem" }}>{String(lineAlertsLoading)}</h1>
+    <div className={styles.container}>
+      <Header search={search} setSearch={setSearch} />
 
       <DataCards
         selectedStation={selectedStation}

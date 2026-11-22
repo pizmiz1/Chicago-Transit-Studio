@@ -1,0 +1,146 @@
+.container {
+  height: 7rem;
+  border-bottom: 1px solid $border;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 2rem;
+}
+
+.logoContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.logoImg {
+  width: 5rem;
+  height: 5rem;
+  object-fit: contain;
+}
+
+.logoText {
+  font-size: 3rem;
+}
+
+.searchContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.searchBar {
+  width: 90%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+  border: 1px solid $border;
+  border-radius: 0.5rem;
+  background: $card;
+  color: $text-muted-light;
+
+  transition: border-color 0.2s ease-out;
+
+  &:focus-within {
+    border-color: $border-active;
+  }
+}
+
+.searchIcon {
+  flex: none;
+}
+
+.searchInput {
+  flex: 1;
+  font-size: 1.5rem;
+
+  &::placeholder {
+    color: $text-muted-dark;
+  }
+
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
+
+.statusContainer {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.statusBox {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  border: 1px solid $border;
+  padding: 1rem 2rem;
+  background-color: $card-hover;
+  border-radius: 1.6rem;
+}
+
+.statusDot {
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition:
+    background-color 0.75s ease,
+    color 0.75s ease,
+    opacity 0.4s ease;
+}
+
+.liveDot {
+  background-color: $status-good;
+  color: rgba(16, 185, 129, 0.65);
+  opacity: 1;
+  animation: livePulse 2.5s ease-in-out infinite;
+}
+
+.loadingDot {
+  background-color: $status-warn;
+  color: rgba(245, 158, 11, 0.65);
+  box-shadow: 0 0 10px 2px currentColor;
+  animation: loadingPulse 1.4s ease-in-out infinite;
+}
+
+.errorDot {
+  background-color: $status-bad;
+  color: rgba(239, 68, 68, 0.55);
+  box-shadow: 0 0 10px 2px currentColor;
+  opacity: 1;
+  animation: none;
+}
+
+.statusText {
+  font-size: 1.7rem;
+  line-height: 1;
+  margin-top: 0.25rem;
+}
+
+// Animations
+
+@keyframes loadingPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes livePulse {
+  0%,
+  100% {
+    box-shadow: 0 0 8px 1px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 14px 3.5px currentColor;
+  }
+}

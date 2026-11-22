@@ -45,3 +45,13 @@ button {
   text-align: inherit;
   cursor: pointer;
 }
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: $text-primary;
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
