@@ -61,7 +61,7 @@ export const LineAlertDisplay = ({ lineAlert, selected, onClick }: LineAlertDisp
     .filter((name) => normalizedHeadline.includes(normalize(name)))
     .sort((a, b) => normalize(b).length - normalize(a).length)[0];
 
-  const stationText = matchedStation ?? "Station not specified";
+  const stationText = matchedStation ?? "Station Not Specified";
 
   const relativeTimeFormatter = new Intl.RelativeTimeFormat("en", {
     numeric: "always",

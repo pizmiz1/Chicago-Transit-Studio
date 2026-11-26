@@ -9,16 +9,18 @@ export const Dashboard = () => {
   const [selectedStation, setSelectedStation] = useState<Station | undefined>();
   const [selectedLines, setSelectedLines] = useState<Line[] | undefined>();
   const [search, setSearch] = useState("");
+  const [searchPopoverVisible, setSearchPopoverVisible] = useState(false);
 
   return (
     <div className={styles.container}>
-      <Header search={search} setSearch={setSearch} />
+      <Header search={search} setSearch={setSearch} searchPopoverVisible={searchPopoverVisible} setSearchPopoverVisible={setSearchPopoverVisible} />
 
       <DataCards
         selectedStation={selectedStation}
         selectedLines={selectedLines}
         setSelectedStation={setSelectedStation}
         setSelectedLines={setSelectedLines}
+        searchPopoverVisible={searchPopoverVisible}
       />
     </div>
   );

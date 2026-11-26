@@ -46,6 +46,16 @@
       outline-color: $card-active;
     }
   }
+
+  &:first-child {
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: 11px;
+    border-bottom-right-radius: 11px;
+  }
 }
 
 .chipContainer {

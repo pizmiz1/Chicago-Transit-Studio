@@ -1,19 +1,21 @@
 import styles from "./DataCards.module.scss";
 import { Card } from "../../../components/Card";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { AlertsCardPopover } from "./AlertsCardPopover";
 import { useData } from "../../../store/DataContext";
 import type { Station } from "../../../types/Station";
-import type { Line } from "../../../types/Lines";
+import { serviceIdsToLinesMap, type Line } from "../../../types/Lines";
+import { Popover } from "../../../components/Popover";
+import { LineAlertDisplay } from "./LineAlertDisplay";
 
 interface DataCardsProps {
   selectedStation: Station | undefined;
   selectedLines: Line[] | undefined;
   setSelectedStation: (newStation: Station | undefined) => void;
   setSelectedLines: (newLines: Line[] | undefined) => void;
+  searchPopoverVisible: boolean;
 }
 
-export const DataCards = ({ selectedStation, selectedLines, setSelectedStation, setSelectedLines }: DataCardsProps) => {
+export const DataCards = ({ selectedStation, selectedLines, setSelectedStation, setSelectedLines, searchPopoverVisible }: DataCardsProps) => {
   const { lineAlerts, ridership, stations } = useData();
 
   const [selectedCardIndex, setSelectedCardIndex] = useState<number | undefined>();
@@ -124,7 +126,11 @@ export const DataCards = ({ selectedStation, selectedLines, setSelectedStation, 
         onClick={() => {
           dataCardClick(1);
         }}
-        onPointerDown={(event) => event.stopPropagation()}
+        onPointerDown={(event) => {
+          if (!searchPopoverVisible) {
+            event.stopPropagation();
+          }
+        }}
       >
         <div className={styles.cardContainer}>
           <p className={styles.headerText}>Active Service Alerts:</p>
@@ -137,7 +143,11 @@ export const DataCards = ({ selectedStation, selectedLines, setSelectedStation, 
         onClick={() => {
           dataCardClick(2);
         }}
-        onPointerDown={(event) => event.stopPropagation()}
+        onPointerDown={(event) => {
+          if (!searchPopoverVisible) {
+            event.stopPropagation();
+          }
+        }}
       >
         <div className={styles.cardContainer}>
           <p className={styles.headerText}>Peak Station:</p>
@@ -145,14 +155,30 @@ export const DataCards = ({ selectedStation, selectedLines, setSelectedStation, 
         </div>
       </Card>
 
-      <AlertsCardPopover
-        isVisible={selectedCardIndex === 1}
-        selectedAlertIndex={selectedAlertIndex}
-        setSelectedAlertIndex={setSelectedAlertIndex}
-        setSelectedLines={setSelectedLines}
-        setSelectedStation={setSelectedStation}
-        onDismiss={totalStateClear}
-      />
+      <Popover isVisible={selectedCardIndex === 1} onDismiss={totalStateClear} arrow={true} style={{ top: "calc(100% + 14px)", left: "33.9%" }}>
+        {lineAlerts.map((curr, index) => {
+          return (
+            <LineAlertDisplay
+              key={curr.AlertId}
+              lineAlert={curr}
+              selected={selectedAlertIndex === index}
+              onClick={(stationName: string) => {
+                const isSelected = selectedAlertIndex === index;
+
+                if (isSelected) {
+                  setSelectedAlertIndex(undefined);
+                  setSelectedLines(undefined);
+                  setSelectedStation(undefined);
+                } else {
+                  setSelectedAlertIndex(index);
+                  setSelectedLines(curr.ImpactedService?.Service?.map(({ ServiceId }) => serviceIdsToLinesMap[ServiceId]));
+                  setSelectedStation(stations.find(({ station_name }) => station_name === stationName));
+                }
+              }}
+            />
+          );
+        })}
+      </Popover>
     </div>
   );
 };

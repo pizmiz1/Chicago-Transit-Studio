@@ -3,8 +3,6 @@
 @mixin card {
   background-color: $card;
   padding: 2.5rem;
-  border-color: $border;
-  border-radius: 8px;
-  border-width: 1px;
-  border-style: solid;
+  border: 1px solid $border;
+  border-radius: 12px;
 }
