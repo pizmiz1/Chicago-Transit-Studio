@@ -2,16 +2,37 @@ import { Search } from "lucide-react";
 import styles from "./Header.module.scss";
 import { useData } from "../../../store/DataContext";
 import { Popover } from "../../../components/Popover";
+import { useMemo, useState } from "react";
+import { averageRidesByStation } from "../../../helpers/dataHelper";
+import type { Station } from "../../../types/station";
 
 interface HeaderProps {
-  search: string;
-  setSearch: (newSearch: string) => void;
   searchPopoverVisible: boolean;
   setSearchPopoverVisible: (newVisible: boolean) => void;
 }
 
-export const Header = ({ search, setSearch, searchPopoverVisible, setSearchPopoverVisible }: HeaderProps) => {
-  const { ridership, ridershipLoadStatus } = useData();
+export const Header = ({ searchPopoverVisible, setSearchPopoverVisible }: HeaderProps) => {
+  const { ridership, stations, ridershipLoadStatus } = useData();
+
+  const [search, setSearch] = useState("");
+
+  const query = search.trim().toLowerCase();
+  const ridesByStationId = useMemo(() => {
+    return averageRidesByStation(ridership);
+  }, [ridership]);
+
+  let filteredStations: Station[] = [];
+
+  if (query.length > 0) {
+    filteredStations = stations
+      .filter((station) => station.station_name.toLowerCase().includes(query))
+      .sort((stationA, stationB) => {
+        const ridesA = ridesByStationId.get(stationA.map_id) ?? 0;
+        const ridesB = ridesByStationId.get(stationB.map_id) ?? 0;
+
+        return ridesB - ridesA;
+      });
+  }
 
   return (
     <div className={styles.container}>
@@ -70,6 +91,18 @@ export const Header = ({ search, setSearch, searchPopoverVisible, setSearchPopov
       >
         <div className={styles.searchPopoverSection}>
           <p className={styles.searchPopoverSectionHeaderText}>Stations</p>
+          {filteredStations.slice(0, 5).map((station) => {
+            return (
+              <p key={station.map_id}>
+                {station.station_name}: {(ridesByStationId.get(station.map_id) ?? 0).toLocaleString("en-US")} avg rides
+              </p>
+            );
+          })}
+          {filteredStations.length > 5 && (
+            <div className={styles.stationResultsBanner}>
+              <p className={styles.stationResultsText}>Showing top 5 of {filteredStations.length} — type more to refine</p>
+            </div>
+          )}
         </div>
         <div className={styles.searchPopoverSection}>
           <p className={styles.searchPopoverSectionHeaderText}>Active Alerts</p>

@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import type { Ridership } from "../types/Ridership";
-import type { Station } from "../types/Station";
-import type { LineAlert } from "../types/LineAlert";
-import { serviceIdsList } from "../types/Lines";
+import type { Ridership } from "../types/ridership";
+import type { Station } from "../types/station";
+import type { LineAlert } from "../types/lineAlert";
+import { serviceIdsList } from "../types/lines";
 
 type LoadStatus = "initial" | "background" | "complete" | "error";
 
@@ -138,7 +138,9 @@ export const DataProvider = ({ children }: DataProviderProps) => {
           return;
         }
 
-        setStations(data);
+        const uniqueData = [...new Map(data.map((curr) => [curr.map_id, curr])).values()];
+
+        setStations(uniqueData);
       } catch (err) {
         setStationsError(err instanceof Error ? err.message : "Could not load CTA station data.");
       } finally {

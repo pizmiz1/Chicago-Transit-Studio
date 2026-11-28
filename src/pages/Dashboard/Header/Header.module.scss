@@ -125,7 +125,6 @@
 }
 
 .searchPopoverSection {
-  padding: 2rem;
   border-bottom: 1px solid $border;
 
   &:last-child {
@@ -138,6 +137,18 @@
   color: $text-muted-light;
   text-transform: uppercase;
 }
+
+.stationResultsBanner {
+  padding: 0.6rem 0rem;
+  background-color: $hightlight;
+}
+
+.stationResultsText {
+  font-size: 1.2rem;
+  text-align: center;
+  color: $text-secondary;
+}
+
 // Animations
 
 @keyframes loadingPulse {

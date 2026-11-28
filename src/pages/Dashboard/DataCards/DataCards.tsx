@@ -2,10 +2,11 @@ import styles from "./DataCards.module.scss";
 import { Card } from "../../../components/Card";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useData } from "../../../store/DataContext";
-import type { Station } from "../../../types/Station";
-import { serviceIdsToLinesMap, type Line } from "../../../types/Lines";
+import type { Station } from "../../../types/station";
+import { serviceIdsToLinesMap, type Line } from "../../../types/lines";
 import { Popover } from "../../../components/Popover";
 import { LineAlertDisplay } from "./LineAlertDisplay";
+import { sumRidesByStation } from "../../../helpers/dataHelper";
 
 interface DataCardsProps {
   selectedStation: Station | undefined;
@@ -22,13 +23,7 @@ export const DataCards = ({ selectedStation, selectedLines, setSelectedStation, 
   const [selectedAlertIndex, setSelectedAlertIndex] = useState<number | undefined>();
 
   const peakStation = useMemo(() => {
-    const ridesByStationId = new Map<string, number>();
-
-    for (const ride of ridership) {
-      const currRides = Number(ride.rides);
-      const currStationRideTotal = ridesByStationId.get(ride.station_id) ?? 0;
-      ridesByStationId.set(ride.station_id, currStationRideTotal + currRides);
-    }
+    const ridesByStationId = sumRidesByStation(ridership);
 
     let topStationId: string | undefined;
     let maxRides = 0;

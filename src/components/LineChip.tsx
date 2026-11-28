@@ -1,4 +1,4 @@
-import type { Line } from "../types/Lines";
+import type { Line } from "../types/lines";
 import styles from "./LineChip.module.scss";
 
 interface LineChipProps {

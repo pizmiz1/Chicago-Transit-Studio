@@ -1,9 +1,9 @@
 import { Bell, ClockAlert, Construction, Info, Split, type LucideIcon } from "lucide-react";
 import { LineChip } from "../../../components/LineChip";
-import type { LineAlert } from "../../../types/LineAlert";
-import { serviceIdsToLinesMap } from "../../../types/Lines";
+import type { LineAlert } from "../../../types/lineAlert";
+import { serviceIdsToLinesMap } from "../../../types/lines";
 import styles from "./LineAlertDisplay.module.scss";
-import { stationNames } from "../../../types/Station";
+import { stationNames } from "../../../types/station";
 
 type Status = "Planned Work" | "Major Delay" | "Minor Delay" | "Special Note" | "Other";
 

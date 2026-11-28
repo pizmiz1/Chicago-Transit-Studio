@@ -1,4 +1,4 @@
-import type { ServiceIds } from "./Lines";
+import type { ServiceIds } from "./lines";
 
 export interface LineAlert {
   AlertId: string;
